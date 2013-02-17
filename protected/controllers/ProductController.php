@@ -24,12 +24,26 @@ class ProductController extends Controller
         //$criteria->condition = 'category_id=:category_id';
         //$criteria->params = array(':category_id'=>$_REQUEST['category_id']);
         //$products = Product::model()->findAll($criteria);
-        $products = Auction::getAuctions();
+        $products = Auction::getAuctions($_REQUEST['category_id']);
+        $category = Category::model()->find('category_id=:category_id', array(':category_id'=>$_REQUEST['category_id']));
         
         $products_count = Auction::model()->count();
         $pages_count = ceil($products_count/20);
         $this->render('auction', array('products'=>$products,
-                                     'pages_count'=>$pages_count));
+                                       'pages_count'=>$pages_count,
+                                       'category'=>$category));
+    }
+    
+    public function actionSelling()
+    {
+        $products = Selling::getAuctions($_REQUEST['category_id']);
+        $category = Category::model()->find('category_id=:category_id', array(':category_id'=>$_REQUEST['category_id']));
+        
+        $products_count = Auction::model()->count();
+        $pages_count = ceil($products_count/20);
+        $this->render('selling', array('products'=>$products,
+                                        'pages_count'=>$pages_count,
+                                        'category'=>$category));
     }
     
     public function actionItem()
@@ -56,19 +70,22 @@ class ProductController extends Controller
         
         $products_count = Product::model()->count('category_id=:category_id', array(':category_id'=>$_REQUEST['category_id']));
         $pages_count = ceil($products_count/20);
+        $category = Category::model()->find('category_id=:category_id', array(':category_id'=>$_REQUEST['category_id']));
+        
         $this->render('items', array('products'=>$products,
-                                     'pages_count'=>$pages_count));
+                                     'pages_count'=>$pages_count,
+                                     'category'=>$category));
     }
     
     public function actionUpdateOriginImage()
     {
-        Yii::app()->db->createCommand("UPDATE product SET origin_image = concat('http://hotline.ua/img/tx/',substr(replace(thumb_image, 'http://hotline.ua/img/tx/',''), 1, position('/' in replace(thumb_image, 'http://hotline.ua/img/tx/',''))),replace(substr(replace(thumb_image, 'http://hotline.ua/img/tx/',''), position('/' in replace(thumb_image, 'http://hotline.ua/img/tx/',''))+1),'.jpg','')+1, '.jpg')")->query();
+        Yii::app()->db->createCommand("UPDATE product SET origin_image = concat('http://hotline.ua/img/tx/',substr(replace(thumb_image, 'http://hotline.ua/img/tx/',''), 1, position('/' in replace(thumb_image, 'http://hotline.ua/img/tx/',''))),replace(substr(replace(thumb_image, 'http://hotline.ua/img/tx/',''), position('/' in replace(thumb_image, 'http://hotline.ua/img/tx/',''))+1),'.jpg','')+1, '.jpg') WHERE origin_image=''")->query();
         Yii::app()->end();
     }
     
     public function actionUpdateNameImage()
     {
-        Yii::app()->db->createCommand("UPDATE product SET name_image=substr(replace(thumb_image,'http://hotline.ua/img/tx/',''), position('/' in replace(thumb_image,'http://hotline.ua/img/tx/',''))+1)")->query();
+        Yii::app()->db->createCommand("UPDATE product SET name_image=substr(replace(thumb_image,'http://hotline.ua/img/tx/',''), position('/' in replace(thumb_image,'http://hotline.ua/img/tx/',''))+1) WHERE name_image=''")->query();
         Yii::app()->end();
     }
 

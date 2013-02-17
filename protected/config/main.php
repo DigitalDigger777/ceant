@@ -11,7 +11,9 @@ return array(
 
 	// preloading 'log' component
 	'preload'=>array('log'),
-
+        //language
+        'sourceLanguage'=>'ru',
+        'language'=>'ru',
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
@@ -76,7 +78,7 @@ return array(
 					'levels'=>'trace,log',
                                         'categories' => 'system.db.CDbCommand',
                                         'logFile' => 'db.log',                                        
-				),                            
+				),
 				// uncomment the following to show log messages on web pages
 				/*
 				array(

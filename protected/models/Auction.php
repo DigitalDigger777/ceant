@@ -10,11 +10,12 @@ class Auction extends CActiveRecord
         return 'auctions';
     }
     
-    public static function getAuctions($limit = 20, $user_id = 0)
+    public static function getAuctions($category_id, $limit = 20, $user_id = 0)
     {
         return Yii::app()->getDb()->createCommand('SELECT T2.*
                                                     FROM `auctions` T1
-                                                    JOIN `product` T2 ON T1.product_id = T2.product_id')->query();
+                                                    JOIN `product` T2 ON T1.product_id = T2.product_id
+                                                    WHERE category_id = '.$category_id)->query();
     }
 }
 ?>

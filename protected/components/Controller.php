@@ -22,6 +22,21 @@ class Controller extends CController
 	public $breadcrumbs=array();
         
         private $_assetsBase;
+        
+        public function init() {
+            parent::init();
+            $app = Yii::app();
+            if (isset($_REQUEST['_lang']))
+            {
+                $app->language = $_REQUEST['_lang'];
+                $app->session['_lang'] = $app->language;
+            }
+            else if (isset($app->session['_lang']))
+            {
+                $app->language = $app->session['_lang'];
+            }            
+        }
+
         public function getAssetsBase()
         {
                 if ($this->_assetsBase === null) {

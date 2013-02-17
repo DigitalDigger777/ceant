@@ -1,6 +1,9 @@
-<?php 
-    $this->pageTitle = 'Ceant | Аукцион';
+<?php
+    $this->pageTitle = 'Ceant | '.Yii::t('main', 'Аукцион').' | '.Yii::t('main', $category->a_name);
 ?>
+<div class="row-fluid">
+    <h5><?php echo Yii::t('main', $category->name); ?></h5>
+</div>
 <?php foreach($products as $product):?>
     <div class="row-fluid">
         <div class="row-fluid">
@@ -19,12 +22,12 @@
                         <?php echo $product['intro_desc']; ?>
                         <div class="row-fluid">
                             <div class="span10">
-                                <p class="muted">Средняя цена: <?php echo $product['current_price']; ?></p>                                
+                                <p class="muted"><?php echo Yii::t('main','Средняя цена');?>: <?php echo $product['current_price']; ?></p>
                             </div>
                             <div class="span2">
                                 <div class="btn-group">
                                     <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-                                        Действие
+                                        <?php echo Yii::t('main','Действие'); ?>
                                         <span class="caret"></span>
                                     </a>
                                     <!--<ul class="dropdown-menu">

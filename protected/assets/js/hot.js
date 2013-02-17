@@ -50,6 +50,7 @@ function getCountPages(category, parent)
                     format:'json'
             },
             success:function(data){
+                    console.log(category);
                     var pages = data.query.results.html.body.p;
                     var reg = new RegExp(/[0-9]*?$/);
                     var count_pages = reg.exec(pages)[0];

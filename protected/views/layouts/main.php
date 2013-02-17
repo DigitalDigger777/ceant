@@ -1,4 +1,4 @@
-<?php 
+<?php
     Yii::import('application.vendors.*');
     require_once 'facebook/facebook.php';
     
@@ -46,13 +46,14 @@
                 <a class="brand" href="index.php">Ceant</a>
                 <ul class="nav">
                     <li<?php echo !isset($_REQUEST['r'])||$_REQUEST['r']=='product/index'?' class="active"':'';?>><a href="index.php">Главная</a></li>
-                    <li<?php echo isset($_REQUEST['r'])&&$_REQUEST['r']=='product/items'?' class="active"':'';?>><a href="index.php?r=product/items&category_id=2">Каталог</a></li>
-                    <li<?php echo isset($_REQUEST['r'])&&$_REQUEST['r']=='product/auction'?' class="active"':'';?>><a href="index.php?r=product/auction&category_id=2">Аукцион</a></li>
+                    <li<?php echo isset($_REQUEST['r'])&&($_REQUEST['r']=='product/items'||$_REQUEST['r']=='product/item')?' class="active"':'';?>><a href="index.php?r=product/items&category_id=2">Каталог</a></li>
+                    <!--<li<?php echo isset($_REQUEST['r'])&&$_REQUEST['r']=='product/auction'?' class="active"':'';?>><a href="index.php?r=product/auction&category_id=2">Куплю</a></li>-->
+                    <!--<li<?php echo isset($_REQUEST['r'])&&$_REQUEST['r']=='product/selling'?' class="active"':'';?>><a href="index.php?r=product/selling&category_id=2">Продам</a></li>-->
                     <!--<li<?php echo isset($_REQUEST['view'])&&$_REQUEST['view']=='buyer'?' class="active"':'';?>><a href="index.php?r=site/page&view=buyer">Для покупателей</a></li>-->
                     <!--<li<?php echo isset($_REQUEST['view'])&&$_REQUEST['view']=='seller'?' class="active"':'';?>><a href="index.php?r=site/page&view=seller">Для продавцов</a></li>-->
                 </ul>
                 <form class="navbar-search pull-left">
-                  <input type="text" class="search-query" placeholder="Поиск" />
+                  <!--<input type="text" class="search-query" placeholder="Поиск" />-->
                 </form>
                 <ul class="nav pull-right">
                     <li>

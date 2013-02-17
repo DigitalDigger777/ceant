@@ -2,6 +2,7 @@
     $this->pageTitle = 'Ceant | Главная';
 ?>
 <div class="row-fluid">
+    <!--
     <div class="span1"></div>
     <div class="span10">
         <div id="slider" class="carousel slide">
@@ -26,6 +27,7 @@
         </div>
     </div>
     <div class="span1"></div>
+    -->
 </div>
 <div class="row-fluid">
     <?php $p = 0; ?>
@@ -33,7 +35,7 @@
     <div class="row-fluid">
         <?php for($m = 0; $m < 2; $m++):?>
         <div class="span6 well well-small" style="height: 200px">
-            <img src="<?php echo empty($products[$p]->name_image)||$products[$p]->name_image=='0000004.jpg'?'images/noimg.jpg':'images/thumb_bw/'.$products[$p]->name_image; ?>" alt="<?php echo $products[$p]->name; ?>" class="img-rounded"/>
+            <img src="<?php echo empty($products[$p]->name_image)||$products[$p]->name_image=='0000004.jpg'?'images/noimg.jpg':'images/thumb/'.$products[$p]->name_image; ?>" alt="<?php echo $products[$p]->name; ?>" class="img-rounded"/>
             <h6><a href="index.php?r=product/item&product_id=<?php echo $products[$p]->product_id; ?>"><?php echo $products[$p]->name; ?></a></h6>
             <?php echo $products[$p]->intro_desc; ?>
             <?php $p++; ?>
